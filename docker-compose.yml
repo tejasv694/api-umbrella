@@ -1,9 +1,12 @@
-version: "2.1"
+version: "3.2"
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile-dev
+      cache_from:
+        - nrel/api-umbrella-dev-env:gh-actions
+    image: nrel/api-umbrella-dev-env:gh-actions
     command: /app/docker/dev/docker-start
     volumes:
       - .:/app

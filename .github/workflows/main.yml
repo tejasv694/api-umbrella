@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v1
+      - name: Pull Cached Container
+        run: docker pull "nrel/api-umbrella-dev-env:${GITHUB_REF#refs/heads/}" || true
+      - name: Build Container
+        run: docker-compose build
+      - name: Docker Registry Login
+        run: docker login --username "$DOCKER_USERNAME" --password "$DOCKER_PASSWORD"
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Push Container
+        run: run docker push "nrel/api-umbrella-dev-env:${GITHUB_REF#refs/heads/}"
