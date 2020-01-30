@@ -3,7 +3,7 @@ source "https://rubygems.org"
 gem "rake", "~> 13.0.0"
 
 # Tests
-gem "minitest", "~> 5.12.0"
+gem "minitest", "~> 5.14.0"
 
 # CLI helper for running tests
 gem "minitest-sprint", "~> 1.2.0"
@@ -18,8 +18,8 @@ gem "minitest-hooks", "~> 1.5.0"
 gem "minitest-ci", "~> 3.4.0"
 
 # Ruby lint/style checker
-gem "rubocop", "~> 0.76.0", :require => false
-gem "rubocop-rails", "~> 2.3.0", :require => false
+gem "rubocop", "~> 0.79.0", :require => false
+gem "rubocop-rails", "~> 2.4.0", :require => false
 
 # Running background processes
 gem "childprocess", "~> 3.0.0"
@@ -29,11 +29,11 @@ gem "typhoeus", "~> 1.3.0"
 
 # JSON parsing
 gem "multi_json", "~> 1.14.1"
-gem "oj", "~> 3.9.0"
+gem "oj", "~> 3.10.0"
 
 # Database libraries
 gem "mongoid", "~> 7.0.1"
-gem "elasticsearch", "~> 7.3.0"
+gem "elasticsearch", "~> 7.4.0"
 gem "active_attr", "~> 0.15.0"
 
 # Factories for test database data
@@ -49,9 +49,9 @@ gem "rails_compatible_cookies_utils", "~> 0.1.0"
 gem "addressable", "~> 2.7.0"
 
 # Browser/JavaScript integration tests
-gem "capybara", "~> 3.29.0"
+gem "capybara", "~> 3.30.0"
 gem "selenium-webdriver", "~> 3.141"
-gem "webdrivers", "~> 4.1.0", :require => false
+gem "webdrivers", "~> 4.2.0", :require => false
 # https://github.com/dbalatero/capybara-chromedriver-logger/pull/7
 gem "capybara-chromedriver-logger", "~> 0.3.0", :git => "https://github.com/ThriveTRM/capybara-chromedriver-logger.git", :branch => "do-not-raise-on-filtered-errors"
 
@@ -68,7 +68,7 @@ gem "activesupport", "~> 5.2.0"
 gem "lazyhash", "~> 0.1.1"
 
 # Generating fake strings and data.
-gem "faker", "~> 2.6.0"
+gem "faker", "~> 2.10.0"
 
 # Concurrency helpers.
 gem "concurrent-ruby", "~> 1.1.1"
