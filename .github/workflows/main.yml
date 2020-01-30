@@ -25,4 +25,4 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push Container
-        run: run docker push "nrel/api-umbrella-dev-env:${GITHUB_REF#refs/heads/}"
+        run: docker push "nrel/api-umbrella-dev-env:${GITHUB_REF#refs/heads/}"
