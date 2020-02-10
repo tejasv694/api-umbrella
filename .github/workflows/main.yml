@@ -26,3 +26,7 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push Container
         run: docker push "nrel/api-umbrella-dev-env:${GITHUB_REF#refs/heads/}"
+      - name: Lint
+        run: docker-compose run --rm app make lint
+      - name: Test
+        run: docker-compose run --rm -e N=12 app make test
