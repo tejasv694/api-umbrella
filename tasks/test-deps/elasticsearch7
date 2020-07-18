@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-elasticsearch7_version="7.5.1"
-elasticsearch7_hash="8c34bc04d480ab37da128e15c0ca86f0a64f58e5"
+elasticsearch7_version="7.8.0"
+elasticsearch7_hash="1b73fc165967fe61393aceb85b64e02e99955ea1"
 
 set -e -u -x
 source ./tasks/helpers.sh
@@ -12,6 +12,8 @@ extract_download "elasticsearch-$elasticsearch7_version-linux-x86_64.tar.gz"
 
 mkdir -p "$TEST_INSTALL_PREFIX/elasticsearch7"
 rsync -a -v --checksum --delete-after "elasticsearch-$elasticsearch7_version/" "$TEST_INSTALL_PREFIX/elasticsearch7/"
+# Fix jdk directories being chmod 750.
+find "$TEST_INSTALL_PREFIX/elasticsearch7/" -type d -print0 | xargs -0 chmod 755
 "$TEST_INSTALL_PREFIX/elasticsearch7/bin/elasticsearch-keystore" create
 chmod 660 "$TEST_INSTALL_PREFIX/elasticsearch7/config/elasticsearch.keystore"
 
