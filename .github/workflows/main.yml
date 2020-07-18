@@ -10,7 +10,7 @@ jobs:
       - name: Pull Cached Container
         run: docker pull "nrel/api-umbrella-dev-env:${GITHUB_REF#refs/heads/}" || true
       - name: Build Container
-        run: docker-compose build
+        run: docker-compose build --pull
       - name: Docker Registry Login
         run: docker login --username "$DOCKER_USERNAME" --password "$DOCKER_PASSWORD"
         env:
