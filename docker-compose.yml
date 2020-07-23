@@ -5,8 +5,8 @@ services:
       context: .
       dockerfile: Dockerfile-dev
       cache_from:
-        - nrel/api-umbrella-dev-env:gh-actions
-    image: nrel/api-umbrella-dev-env:gh-actions
+        - nrel/api-umbrella-dev-env:${GITHUB_REF_SLUG:-master}
+    image: nrel/api-umbrella-dev-env:${GITHUB_REF_SLUG:-master}
     command: /app/docker/dev/docker-start
     volumes:
       - .:/app

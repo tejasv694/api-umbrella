@@ -11,8 +11,10 @@ jobs:
         run: |
           docker --version
           docker-compose version
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v2.x
       - name: Pull Cached Container
-        run: docker pull "nrel/api-umbrella-dev-env:${GITHUB_REF#refs/heads/}" || true
+        run: docker pull "nrel/api-umbrella-dev-env:$GITHUB_REF_SLUG" || true
       - name: Build Container
         run: docker-compose build --pull
       - name: Docker Registry Login
@@ -21,9 +23,11 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push Container
-        run: docker push "nrel/api-umbrella-dev-env:${GITHUB_REF#refs/heads/}"
+        run: docker push "nrel/api-umbrella-dev-env:$GITHUB_REF_SLUG"
       - name: Lint
         run: |
+          docker-compose run --rm app ls -la
+          docker-compose run --rm app ./configure
           docker-compose run --rm app ls -la
           docker-compose run --rm app cat Makefile
           docker-compose run --rm app make lint
