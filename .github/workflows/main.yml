@@ -26,10 +26,9 @@ jobs:
         run: docker push "nrel/api-umbrella-dev-env:$GITHUB_REF_SLUG"
       - name: Lint
         run: |
-          docker-compose run --rm app ls -la
           docker-compose run --rm app ./configure
-          docker-compose run --rm app ls -la
-          docker-compose run --rm app cat Makefile
+          docker-compose run --rm app make
+          docker-compose run --rm app make test-deps
           docker-compose run --rm app make lint
       - name: Test
         run: docker-compose run --rm -e N=12 app make test
